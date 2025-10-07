@@ -6,6 +6,9 @@ import onboard1 from "../../assets/images/onboard1.png";
 import onboard2 from "../../assets/images/onboard2.png";
 import onboard3 from "../../assets/images/onboard3.png";
 import { RoundedButton } from "../../components";
+import { useUtilStore } from "../../store";
+import { useNavigate } from "react-router-dom";
+import { appNavigate } from "../../utils/routing";
 
 const slides = [
   {
@@ -29,6 +32,9 @@ const slides = [
 ];
 
 export const Onboarding: React.FC = () => {
+  const navigate = useNavigate();
+  const { markOnboarded } = useUtilStore();
+
   const [index, setIndex] = useState(0);
 
   const next = () => {
@@ -37,7 +43,8 @@ export const Onboarding: React.FC = () => {
   };
 
   const handleSkip = () => {
-    window.location.reload(); // or navigate("/home") if using react-router
+    markOnboarded();
+    appNavigate(navigate, "home");
   };
 
   return (
