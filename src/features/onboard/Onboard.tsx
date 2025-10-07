@@ -48,7 +48,7 @@ export const Onboarding: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center h-screen bg-black text-white px-6 py-6">
+    <div className="flex-1 flex flex-col items-center flex-1 text-white px-6 py-6">
       {/* Image */}
       <div className="flex items-center justify-center w-full">
         <AnimatePresence mode="wait">
