@@ -19,7 +19,9 @@ export const MobileSizeWrapper: React.FC<MobileSizeWrapperProps> = ({
         "
       >
         {/* Scrollable area */}
-        <div className="h-full overflow-y-auto no-scrollbar">{children}</div>
+        <div className="h-full overflow-y-auto no-scrollbar flex flex-col">
+          {children}
+        </div>
       </div>
     </div>
   );

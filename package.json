@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "motion": "^12.23.22",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-hook-form": "^7.64.0",
     "react-router-dom": "^7.9.3",
+    "tailwind-merge": "^3.3.1",
     "vite-plugin-svgr": "^4.5.0",
     "zod": "^4.1.12",
     "zustand": "^5.0.8"

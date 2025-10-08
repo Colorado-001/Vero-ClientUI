@@ -1,11 +1,15 @@
 import { AnimatePresence, motion } from "motion/react";
 
-import { RadialGradientBg, RoundedButton } from "../../components";
+import { RadialGradientBg, RoundedButton } from "../../../components";
 
-import LockIcon from "../../assets/svg/lock.svg";
-import welcomeImg from "../../assets/images/welcome.png";
+import LockIcon from "../../../assets/svg/lock.svg";
+import welcomeImg from "../../../assets/images/welcome.png";
+import { useNavigate } from "react-router-dom";
+import { appNavigate } from "../../../utils/routing";
 
-export const ConnectWallet = () => {
+export const SetupWallet = () => {
+  const navigate = useNavigate();
+
   return (
     <RadialGradientBg>
       <div className="flex-1 z-10 flex flex-col items-center flex-1 text-white px-6 py-6">
@@ -42,19 +46,21 @@ export const ConnectWallet = () => {
         </motion.div>
 
         {/* Buttons */}
-        <div className="flex flex-col items-center w-full mt-8 gap-4">
+        <div className="flex flex-col items-center w-full mt-12 gap-4">
           <RoundedButton
-            label="Create a new wallet"
-            onClick={() => {}}
+            label="Continue with email"
+            onClick={() => appNavigate(navigate, "createAccountWithEmail")}
             className="w-full"
           />
 
-          <RoundedButton
+          {/* <RoundedButton
             label="Import an existing wallet"
             onClick={() => {}}
             className="w-full text-white !bg-[#14161B] !font-normal"
-          />
+          /> */}
         </div>
+
+        <div className="flex-1"></div>
 
         <div className="mt-auto border-t border-[#6B72804D] py-[8px] w-full flex flex-col items-center">
           <LockIcon />

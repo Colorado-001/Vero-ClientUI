@@ -7,11 +7,15 @@ type AppRoute<T extends object | undefined = undefined> = {
 
 export type AppRoutes = {
   home: AppRoute;
+  createAccountWithEmail: AppRoute;
 };
 
 export const routes: AppRoutes = {
   home: {
     fn: () => "/dashboard",
+  },
+  createAccountWithEmail: {
+    fn: () => "/signup/email",
   },
 };
 

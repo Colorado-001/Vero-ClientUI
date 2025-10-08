@@ -3,6 +3,7 @@ import type React from "react";
 
 interface ButtonProps {
   label: string;
+  type?: "submit" | "button";
   className?: string;
   variant?: "primary" | "secondary" | "outline" | "text";
   onClick?: VoidFunction;
@@ -12,6 +13,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
   label,
   variant = "primary",
   className = "",
+  type = "button",
   ...rest
 }) => {
   const baseStyles =
@@ -29,6 +31,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
       whileTap={{ scale: 0.95 }}
       whileHover={variant === "text" ? { opacity: 0.7 } : { scale: 1.05 }}
       className={`${baseStyles} ${variants[variant]} ${className}`}
+      type={type}
       {...rest}
     >
       {label}
