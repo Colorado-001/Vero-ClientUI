@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth/auth.store";
 import { useEffect, useState } from "react";
 import { MainLayout } from "../components/layout";
-import { CreateUsername } from "../features/onboard";
+import { CreateUsername, SetupPin } from "../features/profile";
 import { withErrorHandling } from "../utils/error";
 
 export const withEnsureAccountSetup = (
@@ -40,6 +40,14 @@ export const withEnsureAccountSetup = (
       return (
         <MainLayout>
           <CreateUsername />
+        </MainLayout>
+      );
+    }
+
+    if (!user.pinSetup) {
+      return (
+        <MainLayout>
+          <SetupPin />
         </MainLayout>
       );
     }
