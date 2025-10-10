@@ -9,7 +9,7 @@ export const withEnsureAuthenticated = (
     const { isAuthenticated } = useAuthStore();
 
     if (!isAuthenticated) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/auth" />;
     }
 
     return <WrappedComponent />;

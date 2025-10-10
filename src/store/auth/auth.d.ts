@@ -12,4 +12,5 @@ export type AuthActions = {
   emailSignup: (email: string) => Promise<string>;
   loadProfile: () => Promise<UserDto>;
   verifyEmailSignup: (token: string, code: string) => Promise<void>;
+  logout: () => void;
 };

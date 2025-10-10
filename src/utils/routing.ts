@@ -8,6 +8,7 @@ type AppRoute<T extends object | undefined = undefined> = {
 export type AppRoutes = {
   home: AppRoute;
   createAccountWithEmail: AppRoute;
+  login: AppRoute;
   verifyOtp: AppRoute<{ token: string; action: "signup" | "login" }>;
 };
 
@@ -20,6 +21,9 @@ export const routes: AppRoutes = {
   },
   verifyOtp: {
     fn: (input) => `/otp/${input.action}/${input.token}`,
+  },
+  login: {
+    fn: () => "/login",
   },
 };
 

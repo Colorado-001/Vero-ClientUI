@@ -5,9 +5,10 @@ import { MobileSizeWrapper, SplashScreen } from "./components";
 import { Home } from "./features/dashboard";
 import { AuthenticatedLayout } from "./components/layout";
 import {
-  SetupWallet,
   CreateAccountWithEmail,
   VerifyOtpPage,
+  LoginPage,
+  SetupWallet,
 } from "./features/auth";
 import { PublicLayout } from "./components/layout/public";
 
@@ -29,7 +30,8 @@ function App() {
                 element={<CreateAccountWithEmail />}
               />
               <Route path="/otp/:action/:token" element={<VerifyOtpPage />} />
-              <Route path="/login" element={<SetupWallet />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/auth" element={<SetupWallet />} />
             </Route>
           </Routes>
         </Router>

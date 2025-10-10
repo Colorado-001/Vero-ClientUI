@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { PinInputWithKeypad, RoundedButton } from "../../../components";
-import { useVerifyOtp } from "../hooks/useVerifyOtp";
+import { useVerifyOtp } from "../hooks";
 import { useState } from "react";
 
 export const VerifyOtpPage = () => {

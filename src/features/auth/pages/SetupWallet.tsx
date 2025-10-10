@@ -48,16 +48,16 @@ export const SetupWallet = () => {
         {/* Buttons */}
         <div className="flex flex-col items-center w-full mt-12 gap-4">
           <RoundedButton
-            label="Continue with email"
+            label="Create an account"
             onClick={() => appNavigate(navigate, "createAccountWithEmail")}
             className="w-full"
           />
 
-          {/* <RoundedButton
-            label="Import an existing wallet"
-            onClick={() => {}}
+          <RoundedButton
+            label="Login"
+            onClick={() => appNavigate(navigate, "login")}
             className="w-full text-white !bg-[#14161B] !font-normal"
-          /> */}
+          />
         </div>
 
         <div className="flex-1"></div>

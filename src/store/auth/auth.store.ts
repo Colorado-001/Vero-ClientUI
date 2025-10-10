@@ -38,6 +38,14 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         return oUser;
       },
 
+      logout() {
+        set({
+          isAuthenticated: false,
+          token: null,
+          user: null,
+        });
+      },
+
       async verifyEmailSignup(token, code) {
         try {
           set({ authLoading: true });

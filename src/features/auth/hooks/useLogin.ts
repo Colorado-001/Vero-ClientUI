@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useAuthStore } from "../../../store/auth/auth.store";
 import { loginFormSchema, type TLoginForm } from "../schemas";
 import { useCallback } from "react";
-import { useAuthStore } from "../../../store/auth/auth.store";
-import { withErrorHandling } from "../../../utils/error";
 import { useNavigate } from "react-router-dom";
 import { appNavigate } from "../../../utils/routing";
+import { withErrorHandling } from "../../../utils/error";
 
-export const useCreateEmailAccount = () => {
+export const useLogin = () => {
   const navigate = useNavigate();
   const { authLoading: loading, emailSignup } = useAuthStore();
 
@@ -25,11 +26,15 @@ export const useCreateEmailAccount = () => {
       );
 
       if (!isError) {
-        appNavigate(navigate, "verifyOtp", { token: res!, action: "signup" });
+        appNavigate(navigate, "verifyOtp", { token: res!, action: "login" });
       }
     },
     [emailSignup, navigate]
   );
 
-  return { loading, form, onSubmit };
+  return {
+    onSubmit,
+    form,
+    loading,
+  };
 };
