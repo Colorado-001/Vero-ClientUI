@@ -6,6 +6,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
   persist(
     (set) => ({
       isAuthenticated: false,
+      token: null,
 
       setIsAuthenticated(value) {
         set({ isAuthenticated: value });
@@ -16,6 +17,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         isAuthenticated: state.isAuthenticated,
+        token: state.token,
       }),
     }
   )
