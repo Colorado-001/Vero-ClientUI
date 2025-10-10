@@ -16,6 +16,13 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         set({ isAuthenticated: value });
       },
 
+      async setupPin(pin) {
+        const user = await userApi.setup_pin(pin);
+        set({
+          user: user,
+        });
+      },
+
       async emailSignup(email) {
         try {
           set({ authLoading: true });

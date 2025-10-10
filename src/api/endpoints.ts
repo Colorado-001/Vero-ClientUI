@@ -6,4 +6,5 @@ export default {
   me: () => "/v1/users/me",
   usernameIsAvailable: (username: string) =>
     `/v1/users/username-check/${encodeURIComponent(username)}`,
+  pinSetup: () => "/v1/users/me/setup-pin",
 };

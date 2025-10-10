@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { withErrorHandling } from "../../../utils/error";
 import type { PinInputRef } from "../../../components";
+import { useAuthStore } from "../../../store/auth/auth.store";
 
 export const useSetupPin = () => {
+  const { setupPin } = useAuthStore();
+
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState<[string, string]>(["", ""]);
   const pinInputRef = useRef<PinInputRef>(null);
@@ -12,10 +15,6 @@ export const useSetupPin = () => {
     setPins(["", ""]);
   }, []);
 
-  const savePin = useCallback(async (pin: string) => {
-    console.log("[pin]", pin);
-  }, []);
-
   const trigger = useCallback(
     async (pins: [string, string]) => {
       await withErrorHandling(async () => {
@@ -23,11 +22,11 @@ export const useSetupPin = () => {
           reset();
           throw new Error("Pin does not match");
         }
-        await savePin(pins[0]);
+        await setupPin(pins[0]);
         return;
       });
     },
-    [reset, savePin]
+    [reset, setupPin]
   );
 
   const handleInputComplete = useCallback(

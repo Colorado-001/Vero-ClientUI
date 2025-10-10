@@ -17,4 +17,5 @@ export type AuthActions = {
   verifyEmailSignup: (token: string, code: string) => Promise<void>;
   logout: () => void;
   updateProfile: (input: IUpdateProfileRequest) => Promise<void>;
+  setupPin: (pin: string) => Promise<void>;
 };
