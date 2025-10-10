@@ -1,0 +1,80 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import axios, { AxiosError } from "axios";
+import { toast } from "sonner";
+import type {
+  AppErrorResponse,
+  ErrorCodes,
+  ErrorHandlerOptions,
+} from "../types/error";
+
+function parseError(err: unknown): AppErrorResponse {
+  if (axios.isAxiosError(err)) {
+    const axiosErr = err as AxiosError<any>;
+
+    if (axiosErr.response?.data?.message && axiosErr.response?.data?.code) {
+      return {
+        message: axiosErr.response.data.message,
+        code: axiosErr.response.data.code,
+        data: axiosErr.response.data.data,
+      };
+    }
+
+    return {
+      message: axiosErr.message || "Network error",
+      code: "AXIOS_ERROR" as ErrorCodes,
+      data: {
+        status: axiosErr.response?.status,
+        url: axiosErr.config?.url,
+      },
+    };
+  }
+
+  if (err instanceof Error) {
+    return {
+      message: err.message,
+      code: "JS_ERROR" as ErrorCodes,
+      data: undefined,
+    };
+  }
+
+  return {
+    message: "An unexpected error occurred",
+    code: "UNKNOWN_ERROR" as ErrorCodes,
+    data: err,
+  };
+}
+
+export async function withErrorHandling<T>(
+  fn: () => Promise<T>,
+  options: ErrorHandlerOptions = {}
+): Promise<T | undefined> {
+  try {
+    return await fn();
+  } catch (err) {
+    const parsed = parseError(err);
+
+    // Handle specific error codes
+    if (options.onError) {
+      for (const handler of options.onError) {
+        if (parsed.code === handler.code) {
+          handler.func(parsed);
+          return undefined;
+        }
+      }
+    }
+
+    // Fallback toast
+    if (options.showToast !== false) {
+      toast.error(parsed.message || "Something went wrong");
+    }
+
+    return undefined;
+  }
+}
+
+export function isErrorCode<C extends ErrorCodes>(
+  err: AppErrorResponse,
+  code: C
+): err is AppErrorResponse<C> {
+  return err.code === code;
+}

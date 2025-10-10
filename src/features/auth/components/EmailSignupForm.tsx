@@ -3,7 +3,8 @@ import { Form } from "../../../components/ui/form";
 import { useCreateEmailAccount } from "../hooks";
 
 export const EmailSignupForm = () => {
-  const { form, onSubmit } = useCreateEmailAccount();
+  const { form, onSubmit, loading } = useCreateEmailAccount();
+
   return (
     <div className="w-full">
       <Form {...form}>
@@ -20,6 +21,7 @@ export const EmailSignupForm = () => {
               label="Continue with email"
               type="submit"
               className="w-full"
+              loading={loading}
             />
           </div>
         </form>
