@@ -5,3 +5,4 @@ export * from "./carousel-indicator";
 export * from "./rounded-button";
 export * from "./input";
 export * from "./form-input";
+export * from "./pin-with-keypad";

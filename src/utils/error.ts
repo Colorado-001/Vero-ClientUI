@@ -47,9 +47,10 @@ function parseError(err: unknown): AppErrorResponse {
 export async function withErrorHandling<T>(
   fn: () => Promise<T>,
   options: ErrorHandlerOptions = {}
-): Promise<T | undefined> {
+): Promise<{ data: T | null; isError: boolean }> {
   try {
-    return await fn();
+    const res = await fn();
+    return { isError: false, data: res };
   } catch (err) {
     const parsed = parseError(err);
 
@@ -58,7 +59,7 @@ export async function withErrorHandling<T>(
       for (const handler of options.onError) {
         if (parsed.code === handler.code) {
           handler.func(parsed);
-          return undefined;
+          return { isError: true, data: null };
         }
       }
     }
@@ -68,7 +69,7 @@ export async function withErrorHandling<T>(
       toast.error(parsed.message || "Something went wrong");
     }
 
-    return undefined;
+    return { isError: true, data: null };
   }
 }
 

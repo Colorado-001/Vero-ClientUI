@@ -19,7 +19,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const baseStyles =
-    "px-6 py-2.5 rounded-[60px] font-semibold text-sm transition-all duration-200 focus:outline-none flex items-center justify-center gap-2";
+    "h-[50px] px-6 py-2.5 rounded-[60px] font-semibold text-sm transition-all duration-200 focus:outline-none flex items-center justify-center gap-2";
 
   const variants = {
     primary: "bg-primary text-white disabled:opacity-70",
