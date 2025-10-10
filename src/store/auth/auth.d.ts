@@ -1,3 +1,4 @@
+import type { IUpdateProfileRequest } from "../../types/common";
 import type { UserDto } from "../../types/models";
 
 export type AuthState = {
@@ -15,4 +16,5 @@ export type AuthActions = {
   loadProfile: () => Promise<UserDto>;
   verifyEmailSignup: (token: string, code: string) => Promise<void>;
   logout: () => void;
+  updateProfile: (input: IUpdateProfileRequest) => Promise<void>;
 };

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { toast } from "sonner";
 import type {
   AppErrorResponse,
   ErrorCodes,
   ErrorHandlerOptions,
 } from "../types/error";
+import { useAuthStore } from "../store/auth/auth.store";
 
 function parseError(err: unknown): AppErrorResponse {
   if (axios.isAxiosError(err)) {
@@ -52,6 +53,10 @@ export async function withErrorHandling<T>(
     const res = await fn();
     return { isError: false, data: res };
   } catch (err) {
+    if (isAxiosError(err) && err.status === 401) {
+      useAuthStore.getState().logout();
+      return { isError: true, data: null };
+    }
     const parsed = parseError(err);
 
     // Handle specific error codes

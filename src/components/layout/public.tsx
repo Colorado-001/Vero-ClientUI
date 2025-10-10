@@ -5,6 +5,6 @@ const Layout = () => {
   return <MainLayout />;
 };
 
-export const PublicLayout = withEnsureOnboard(
-  withEnsureUnAuthenticated(Layout)
+export const PublicLayout = withEnsureUnAuthenticated(
+  withEnsureOnboard(Layout)
 );

@@ -6,3 +6,4 @@ export * from "./rounded-button";
 export * from "./input";
 export * from "./form-input";
 export * from "./pin-with-keypad";
+export * from "./svg-icon";

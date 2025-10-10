@@ -4,4 +4,6 @@ export default {
   login: () => "/v1/auth/login",
   loginVerify: () => "/v1/auth/login/verify",
   me: () => "/v1/users/me",
+  usernameIsAvailable: (username: string) =>
+    `/v1/users/username-check/${encodeURIComponent(username)}`,
 };

@@ -36,6 +36,13 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         }
       },
 
+      async updateProfile(input) {
+        const response = await userApi.update_profile(input);
+        set({
+          user: response,
+        });
+      },
+
       async verifyLogin(token, code) {
         try {
           set({ authLoading: true });

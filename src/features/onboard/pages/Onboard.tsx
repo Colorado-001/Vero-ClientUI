@@ -2,13 +2,13 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import classnames from "classnames";
 
-import onboard1 from "../../assets/images/onboard1.png";
-import onboard2 from "../../assets/images/onboard2.png";
-import onboard3 from "../../assets/images/onboard3.png";
-import { RoundedButton } from "../../components";
-import { useUtilStore } from "../../store";
+import onboard1 from "../../../assets/images/onboard1.png";
+import onboard2 from "../../../assets/images/onboard2.png";
+import onboard3 from "../../../assets/images/onboard3.png";
+import { RoundedButton } from "../../../components";
+import { useUtilStore } from "../../../store";
 import { useNavigate } from "react-router-dom";
-import { appNavigate } from "../../utils/routing";
+import { appNavigate } from "../../../utils/routing";
 
 const slides = [
   {

@@ -1,10 +1,8 @@
+import type { IUpdateProfileRequest } from "../../types/common";
+import type { UserDto } from "../../types/models";
 import { axiosInstance } from "../client";
 import endpoints from "../endpoints";
 
-interface IRequest {
-  username?: string;
-}
-
-export const update_profile = async (data: IRequest) => {
-  await axiosInstance.patch(endpoints.me(), data);
+export const update_profile = async (data: IUpdateProfileRequest) => {
+  return (await axiosInstance.patch<UserDto>(endpoints.me(), data)).data;
 };

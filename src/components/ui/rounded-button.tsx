@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "text";
   onClick?: VoidFunction;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 export const RoundedButton: React.FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
   className = "",
   type = "button",
   loading = false,
+  disabled = false,
   ...rest
 }) => {
   const baseStyles =
@@ -41,7 +43,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
       }
       className={`${baseStyles} ${variants[variant]} ${className}`}
       type={type}
-      disabled={loading}
+      disabled={loading || disabled}
       {...rest}
     >
       {loading ? (
