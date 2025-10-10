@@ -39,8 +39,7 @@ export const LoginPage = () => {
           </p>
         </motion.div>
 
-        {/** Email Signup Form */}
-        {/** Animated Email Signup Form */}
+        {/** Login Form */}
         <motion.div
           className="w-full mt-8"
           initial={{ opacity: 0, y: 20 }}
