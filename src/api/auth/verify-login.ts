@@ -10,8 +10,7 @@ interface IResponse {
   access_token: string;
 }
 
-export const verify_signup = async (data: IRequest) => {
-  return (
-    await axiosInstance.post<IResponse>(endpoints.verifyEmailSignup(), data)
-  ).data;
+export const verify_login = async (data: IRequest) => {
+  return (await axiosInstance.post<IResponse>(endpoints.loginVerify(), data))
+    .data;
 };

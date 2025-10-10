@@ -26,6 +26,31 @@ export const useAuthStore = create<AuthState & AuthActions>()(
         }
       },
 
+      async login(email) {
+        try {
+          set({ authLoading: true });
+          const response = await authApi.login({ email });
+          return response.token;
+        } finally {
+          set({ authLoading: false });
+        }
+      },
+
+      async verifyLogin(token, code) {
+        try {
+          set({ authLoading: true });
+          const { access_token } = await authApi.verify_login({
+            code,
+            token,
+          });
+          set({ token: access_token });
+          await get().loadProfile();
+          set({ isAuthenticated: true });
+        } finally {
+          set({ authLoading: false });
+        }
+      },
+
       async loadProfile() {
         const oUser = get().user;
 
@@ -49,7 +74,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
       async verifyEmailSignup(token, code) {
         try {
           set({ authLoading: true });
-          const { access_token } = await authApi.verify_otp({ code, token });
+          const { access_token } = await authApi.verify_signup({ code, token });
           set({ token: access_token });
           await get().loadProfile();
           set({ isAuthenticated: true });

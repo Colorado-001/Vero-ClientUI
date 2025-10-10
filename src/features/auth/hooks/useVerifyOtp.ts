@@ -5,7 +5,7 @@ import { withErrorHandling } from "../../../utils/error";
 import type { ErrorHandlerOptions } from "../../../types/error";
 
 export const useVerifyOtp = () => {
-  const { authLoading, verifyEmailSignup } = useAuthStore();
+  const { authLoading, verifyEmailSignup, verifyLogin } = useAuthStore();
   const { action, token } = useParams();
 
   const handleVerifySignup = useCallback(
@@ -21,15 +21,24 @@ export const useVerifyOtp = () => {
     [verifyEmailSignup]
   );
 
+  const handleVerifyLogin = useCallback(
+    async (token: string, code: string) => {
+      await withErrorHandling(() => verifyLogin(token, code));
+    },
+    [verifyLogin]
+  );
+
   const handleComplete = useCallback(
     async (code: string) => {
       if (!token) return;
 
       if (action === "signup") {
         await handleVerifySignup(token, code);
+      } else if (action === "login") {
+        await handleVerifyLogin(token, code);
       }
     },
-    [action, token, handleVerifySignup]
+    [token, action, handleVerifySignup, handleVerifyLogin]
   );
 
   return { handleComplete, loading: authLoading };

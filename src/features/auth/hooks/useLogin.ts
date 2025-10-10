@@ -10,7 +10,7 @@ import { withErrorHandling } from "../../../utils/error";
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const { authLoading: loading, emailSignup } = useAuthStore();
+  const { authLoading: loading, login } = useAuthStore();
 
   const form = useForm<TLoginForm>({
     resolver: zodResolver(loginFormSchema),
@@ -22,14 +22,14 @@ export const useLogin = () => {
   const onSubmit = useCallback(
     async (data: TLoginForm) => {
       const { isError, data: res } = await withErrorHandling(() =>
-        emailSignup(data.email)
+        login(data.email)
       );
 
       if (!isError) {
         appNavigate(navigate, "verifyOtp", { token: res!, action: "login" });
       }
     },
-    [emailSignup, navigate]
+    [login, navigate]
   );
 
   return {
