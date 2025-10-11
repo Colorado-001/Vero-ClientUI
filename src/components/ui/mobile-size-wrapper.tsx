@@ -8,7 +8,7 @@ export const MobileSizeWrapper: React.FC<MobileSizeWrapperProps> = ({
   children,
 }) => {
   return (
-    <div className="flex justify-center items-center w-full h-screen bg-gray-100">
+    <div className="flex justify-center items-center w-full h-screen bg-[#0F1115] md:bg-gray-100">
       {/* Outer frame */}
       <div
         className="
