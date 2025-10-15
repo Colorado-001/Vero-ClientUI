@@ -1,38 +1,26 @@
 import React from "react";
-import { RoundedButton } from "../../../components";
-import { useAuthStore } from "../../../store/auth/auth.store";
-import SvgIcon from "../../../components/ui/svg-icon";
-import { AppIcons } from "../../../assets/svg";
+import { Balance, MyAssets } from "../components";
+import { usePortfolio } from "../../../hooks";
 
 export const Home: React.FC = () => {
-  const { logout } = useAuthStore();
+  const { assets, usdBalance, loading } = usePortfolio();
+
   return (
-    <div className="text-white">
-      <div className="w-full flex flex-col p-8 justify-start items-center">
-        <div className="relative flex flex-col justify-center items-center pt-8">
-          {/* Blurred background layer */}
-          <div className="absolute w-[284px] h-[128px] bg-[#6C4EFF] blur-[90px]" />
-
-          {/* Foreground content */}
-          <div className="relative z-10 flex flex-col justify-center items-center">
-            <p className="text-[#6B7280] text-[14px] text-center">
-              Current Balance
-            </p>
-            <h1 className="text-[#F9FAFB] font-bold text-center text-[40px]">
-              $287.00
-            </h1>
-
-            <div className="text-success text-small flex items-center gap-1 mt-1">
-              <SvgIcon icon={AppIcons.ArrowUp} className="inline" /> 2.8% (1d)
-            </div>
-          </div>
-        </div>
+    <div className="text-white flex-1 flex flex-col gap-6 overflow-hidden">
+      <div className="w-full flex flex-col px-8 py-6 justify-start items-center">
+        <Balance loading={loading} amount={usdBalance} />
 
         {/** Actions */}
         <div className="flex flex-row items-center w-full mt-8"></div>
       </div>
 
-      <RoundedButton onClick={logout} label="Logout" />
+      <div className="flex-1 w-full bg-[#1A1C2280] py-[43px] px-[24px] rounded-t-[40px] space-y-8 overflow-y-auto scrollbar-hide relative">
+        <h5 className="text-[20px] text-[#F9FAFB]">My Wallets</h5>
+
+        {/** Assets */}
+        <MyAssets loading={loading} assets={assets} />
+      </div>
+      {/* <RoundedButton onClick={logout} label="Logout" /> */}
     </div>
   );
 };
