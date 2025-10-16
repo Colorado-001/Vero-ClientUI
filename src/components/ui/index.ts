@@ -8,3 +8,4 @@ export * from "./form-input";
 export * from "./pin-with-keypad";
 export * from "./svg-icon";
 export * from "./icon-button";
+export * from "./crypto-icon";
