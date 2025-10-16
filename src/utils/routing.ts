@@ -10,6 +10,8 @@ export type AppRoutes = {
   createAccountWithEmail: AppRoute;
   login: AppRoute;
   verifyOtp: AppRoute<{ token: string; action: "signup" | "login" }>;
+  swap: AppRoute;
+  profile: AppRoute;
 };
 
 export const routes: AppRoutes = {
@@ -24,6 +26,12 @@ export const routes: AppRoutes = {
   },
   login: {
     fn: () => "/login",
+  },
+  swap: {
+    fn: () => "/swap",
+  },
+  profile: {
+    fn: () => "/profile",
   },
 };
 

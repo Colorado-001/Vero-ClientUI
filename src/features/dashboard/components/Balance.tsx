@@ -12,7 +12,29 @@ export const Balance: React.FC<IProps> = ({ loading, amount: usdBalance }) => {
   return (
     <div className="relative flex flex-col justify-center items-center pt-8">
       {/* Blurred background layer */}
-      <div className="absolute w-[284px] h-[128px] bg-[#6C4EFF] blur-[90px]" />
+      <motion.div
+        className="absolute top-[30px] w-[284px] h-[128px] bg-[#6C4EFF] blur-[90px]"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={
+          loading
+            ? { opacity: [0.4, 0.8, 0.4], scale: [0.7, 1, 0.7] } // pulse sequence
+            : { opacity: 1, scale: 1 } // stop pulsing
+        }
+        transition={
+          loading
+            ? {
+                duration: 1,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "loop",
+              }
+            : {
+                duration: 0.6,
+                ease: "easeOut",
+                delay: 0.4,
+              }
+        }
+      />
 
       {/* Foreground content */}
       <motion.div

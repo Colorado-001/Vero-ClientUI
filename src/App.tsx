@@ -11,6 +11,7 @@ import {
   SetupWallet,
 } from "./features/auth";
 import { PublicLayout } from "./components/layout/public";
+import { SwapPage } from "./features/swap";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Home />} />
+              <Route path="/swap" element={<SwapPage />} />
             </Route>
 
             <Route element={<PublicLayout />}>

@@ -6,7 +6,7 @@ export const Home: React.FC = () => {
   const { assets, usdBalance, loading } = usePortfolio();
 
   return (
-    <div className="text-white flex-1 flex flex-col gap-6 pb-8 overflow-hidden">
+    <div className="text-white flex-1 flex flex-col gap-6 pt-12 pb-8 overflow-hidden">
       <div className="w-full flex flex-col px-8 py-6 justify-start items-center">
         <Balance loading={loading} amount={usdBalance} />
 

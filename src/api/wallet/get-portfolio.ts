@@ -4,7 +4,7 @@ import endpoints from "../endpoints";
 
 interface IResponse {
   assets: AssetValueDto[];
-  usdBalance: number;
+  usdBalance: string;
 }
 
 export const get_portfolio = async () => {
