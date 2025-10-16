@@ -2,7 +2,7 @@ import type { AssetValueDto } from "../../types/wallet";
 
 export type WalletState = {
   assets: AssetValueDto[];
-  usdBalance: number | null;
+  usdBalance: string | null;
   loading: boolean;
 };
 

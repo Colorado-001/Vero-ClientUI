@@ -4,7 +4,7 @@ import { AppIcons } from "../../../assets/svg";
 import SvgIcon from "../../../components/ui/svg-icon";
 
 interface IProps {
-  amount: number | null;
+  amount: string | null;
   loading: boolean;
 }
 
