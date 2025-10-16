@@ -6,8 +6,8 @@ export const AssetTile: React.FC<AssetValueDto> = (asset) => {
   return (
     <motion.div
       className="pb-[20px] w-full border-b border-b-[#6B728033] flex flex-row gap-4 items-center"
-      initial={{ opacity: 0, y: 20 }} // start slightly below and transparent
-      animate={{ opacity: 1, y: 0 }} // fade in and slide up
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.4,
         ease: "easeOut",
