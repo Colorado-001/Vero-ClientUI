@@ -7,5 +7,5 @@ export type WalletState = {
 };
 
 export type WalletActions = {
-  loadPortfolio: () => Promise<void>;
+  loadPortfolio: (refresh?: boolean) => Promise<void>;
 };

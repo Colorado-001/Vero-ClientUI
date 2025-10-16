@@ -8,9 +8,13 @@ export const useWalletStore = create<WalletState & WalletActions>()(
     usdBalance: null,
     loading: false,
 
-    async loadPortfolio() {
+    async loadPortfolio(refresh = false) {
       try {
-        if (!get().usdBalance || get().assets.length === 0) {
+        const { loading, usdBalance, assets } = get();
+
+        const shouldLoad = !loading && (!usdBalance || assets.length === 0);
+
+        if (shouldLoad || refresh) {
           set({ loading: true });
           const result = await walletApi.get_portfolio();
 
@@ -18,6 +22,8 @@ export const useWalletStore = create<WalletState & WalletActions>()(
             assets: result.assets,
             usdBalance: result.usdBalance,
           });
+        } else {
+          console.log("Cached portfolio skip load");
         }
       } finally {
         set({ loading: false });
