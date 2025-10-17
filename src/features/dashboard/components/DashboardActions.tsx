@@ -13,7 +13,12 @@ export const DashboardActions: React.FC<IProps> = ({ disabled }) => {
   return (
     <div className="flex flex-row gap-8 items-center">
       <IconButton title="Send" iconName="Send" disabled={disabled} />
-      <IconButton title="Receive" iconName="Receive" disabled={disabled} />
+      <IconButton
+        title="Receive"
+        iconName="Receive"
+        disabled={disabled}
+        onClick={() => appNavigate(navigate, "receive")}
+      />
       <IconButton
         title="Swap"
         iconName="Swap"

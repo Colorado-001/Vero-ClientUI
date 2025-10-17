@@ -39,6 +39,11 @@ const Header = () => {
     if (pathname.startsWith("/swap")) {
       return "Swap";
     }
+
+    if (pathname.startsWith("/receive")) {
+      return "Receive";
+    }
+
     return null;
   }, [pathname]);
 

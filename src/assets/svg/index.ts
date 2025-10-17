@@ -7,6 +7,8 @@ import SaveIcon from "./trade.svg";
 import ProfileIcon from "./profile.svg";
 import NotificationIcon from "./notification.svg";
 import ArrowLeftIcon from "./arrow-left.svg";
+import WarningIcon from "./warning.svg";
+import CopyIcon from "./copy.svg";
 
 export const AppIcons = {
   TickCircle: TicketCircleIcon,
@@ -18,4 +20,6 @@ export const AppIcons = {
   Profile: ProfileIcon,
   Notification: NotificationIcon,
   ArrowLeft: ArrowLeftIcon,
+  Warning: WarningIcon,
+  Copy: CopyIcon,
 };

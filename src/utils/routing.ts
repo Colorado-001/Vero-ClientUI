@@ -12,6 +12,7 @@ export type AppRoutes = {
   verifyOtp: AppRoute<{ token: string; action: "signup" | "login" }>;
   swap: AppRoute;
   profile: AppRoute;
+  receive: AppRoute;
 };
 
 export const routes: AppRoutes = {
@@ -32,6 +33,9 @@ export const routes: AppRoutes = {
   },
   profile: {
     fn: () => "/profile",
+  },
+  receive: {
+    fn: () => "/receive",
   },
 };
 

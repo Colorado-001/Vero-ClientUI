@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import type { ReactNode } from "react";
 import type React from "react";
 
 interface ButtonProps {
@@ -9,6 +10,7 @@ interface ButtonProps {
   onClick?: VoidFunction;
   loading?: boolean;
   disabled?: boolean;
+  suffixIcon?: ReactNode;
 }
 
 export const RoundedButton: React.FC<ButtonProps> = ({
@@ -18,6 +20,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
   type = "button",
   loading = false,
   disabled = false,
+  suffixIcon,
   ...rest
 }) => {
   const baseStyles =
@@ -49,7 +52,10 @@ export const RoundedButton: React.FC<ButtonProps> = ({
       {loading ? (
         <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
       ) : (
-        label
+        <div className="flex flex-row gap-2 items-center">
+          <p>{label}</p>
+          {suffixIcon && suffixIcon}
+        </div>
       )}
     </motion.button>
   );

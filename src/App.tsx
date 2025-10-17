@@ -12,6 +12,7 @@ import {
 } from "./features/auth";
 import { PublicLayout } from "./components/layout/public";
 import { SwapPage } from "./features/swap";
+import { ReceivePage } from "./features/receive";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Home />} />
               <Route path="/swap" element={<SwapPage />} />
+              <Route path="/receive" element={<ReceivePage />} />
             </Route>
 
             <Route element={<PublicLayout />}>
