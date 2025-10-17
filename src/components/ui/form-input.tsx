@@ -6,7 +6,8 @@ import {
   FormLabel,
   FormMessage,
 } from "./form";
-import classNames from "classnames";
+import type { ReactNode } from "react";
+import { Input } from "./input";
 
 interface IProps<T extends object> {
   form: UseFormReturn<T>;
@@ -14,6 +15,7 @@ interface IProps<T extends object> {
   label?: string;
   placeholder?: string;
   className?: string;
+  suffixIcon?: ReactNode;
 }
 
 export const FormInput = <T extends object>({
@@ -22,6 +24,7 @@ export const FormInput = <T extends object>({
   name,
   placeholder,
   className,
+  suffixIcon,
 }: IProps<T>) => {
   return (
     <FormField
@@ -34,12 +37,12 @@ export const FormInput = <T extends object>({
               {label}
             </FormLabel>
           )}
+
           <FormControl
-            className={classNames(
-              "w-full h-[50px] bg-[#1A1C22] outline-none border-none text-white placeholder:text-[#6B7280] text-sm rounded-[50px] py-[4px] px-[20px]",
-              className
-            )}
+            as={Input}
+            className={className}
             placeholder={placeholder}
+            suffixIcon={suffixIcon}
             {...field}
           />
           <FormMessage className="text-red-500" />

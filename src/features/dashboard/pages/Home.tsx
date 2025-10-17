@@ -1,6 +1,7 @@
 import React from "react";
-import { Balance, DashboardActions, MyAssets } from "../components";
+import { Balance, DashboardActions } from "../components";
 import { usePortfolio } from "../../../hooks";
+import { MyAssets } from "../../../components";
 
 export const Home: React.FC = () => {
   const { assets, usdBalance, loading } = usePortfolio();

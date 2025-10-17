@@ -1,4 +1,5 @@
 import type { NavigateFunction } from "react-router-dom";
+import type { SelectTokenActionType } from "../components/pages";
 
 // Define a generic route type
 type AppRoute<T extends object | undefined = undefined> = {
@@ -13,6 +14,8 @@ export type AppRoutes = {
   swap: AppRoute;
   profile: AppRoute;
   receive: AppRoute;
+  selectToken: AppRoute<{ action: SelectTokenActionType }>;
+  send: AppRoute<{ token: string }>;
 };
 
 export const routes: AppRoutes = {
@@ -36,6 +39,12 @@ export const routes: AppRoutes = {
   },
   receive: {
     fn: () => "/receive",
+  },
+  selectToken: {
+    fn: ({ action }) => `/select-token/${action}`,
+  },
+  send: {
+    fn: ({ token }) => `/send/${token}`,
   },
 };
 

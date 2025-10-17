@@ -13,6 +13,8 @@ import {
 import { PublicLayout } from "./components/layout/public";
 import { SwapPage } from "./features/swap";
 import { ReceivePage } from "./features/receive";
+import { SelectTokenPage } from "./components/pages";
+import { SendPage } from "./features/send";
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
             <Route path="/" element={<SplashScreen />} />
 
             <Route element={<AuthenticatedLayout />}>
+              <Route
+                path="/select-token/:action"
+                element={<SelectTokenPage />}
+              />
+              <Route path="/send/:token" element={<SendPage />} />
+
               <Route path="/dashboard" element={<Home />} />
               <Route path="/swap" element={<SwapPage />} />
               <Route path="/receive" element={<ReceivePage />} />

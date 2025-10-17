@@ -1,4 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { motion } from "motion/react";
 import {
   withEnsureAccountSetup,
@@ -15,6 +20,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
 
   const left = useMemo(() => {
     if (pathname === "/dashboard")
@@ -35,6 +41,8 @@ const Header = () => {
     );
   }, [navigate, pathname]);
 
+  const { token } = useParams();
+
   const title = useMemo(() => {
     if (pathname.startsWith("/swap")) {
       return "Swap";
@@ -44,8 +52,28 @@ const Header = () => {
       return "Receive";
     }
 
+    if (pathname.startsWith("/select-token")) {
+      return "Select Token";
+    }
+
+    if (pathname.startsWith("/send")) {
+      const to = searchParams.get("to");
+
+      if (to) {
+        return "Enter Amount";
+      }
+
+      if (token) {
+        return token.toUpperCase();
+      }
+    }
+
     return null;
-  }, [pathname]);
+  }, [pathname, token, searchParams]);
+
+  const showNotificationIcon = ["/dashboard", "/swap"].some((path) =>
+    pathname.startsWith(path)
+  );
 
   return (
     <div className="absolute top-0 left-0 w-full p-8 bg-transparent flex flex-row items-center justify-between">
@@ -76,7 +104,13 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      <IconButton iconName="Notification" />
+      <AnimatePresence mode="wait">
+        {showNotificationIcon ? (
+          <IconButton key={"notification"} iconName="Notification" />
+        ) : (
+          <div key="none" className="w-[50px]" />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
