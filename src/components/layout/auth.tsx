@@ -15,6 +15,7 @@ import { IconButton } from "../ui";
 import { useMemo } from "react";
 import { appNavigate } from "../../utils/routing";
 import { AnimatePresence } from "motion/react";
+import type { SendStep } from "../../features/send/types";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -57,10 +58,14 @@ const Header = () => {
     }
 
     if (pathname.startsWith("/send")) {
-      const to = searchParams.get("to");
+      const step = searchParams.get("step") as SendStep | null;
 
-      if (to) {
+      if (step === "enter-amount") {
         return "Enter Amount";
+      }
+
+      if (step === "review") {
+        return "Summary";
       }
 
       if (token) {

@@ -11,3 +11,4 @@ export * from "./icon-button";
 export * from "./crypto-icon";
 export * from "./my-assets";
 export * from "./wallet-mask-display";
+export * from "./coin-amount-card";

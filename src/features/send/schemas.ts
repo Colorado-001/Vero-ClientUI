@@ -12,3 +12,14 @@ export const selectWalletAddressSchema = z.object({
 export type SelectWalletAddressSchema = z.infer<
   typeof selectWalletAddressSchema
 >;
+
+export const enterAmountSchema = z.object({
+  amount: z
+    .string()
+    .min(1, "Amount is required")
+    .refine((val) => {
+      const num = Number(val);
+      return !isNaN(num) && num > 0;
+    }, "Amount must be greater than 0"),
+});
+export type EnterAmountSchema = z.infer<typeof enterAmountSchema>;

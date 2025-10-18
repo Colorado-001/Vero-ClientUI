@@ -8,4 +8,6 @@ export default {
     `/v1/users/username-check/${encodeURIComponent(username)}`,
   pinSetup: () => "/v1/users/me/setup-pin",
   getPortfolio: () => "/v1/wallet/portfolio",
+  getGas: () => "/v1/transfer/gas",
+  sendMoney: () => "/v1/transfer/send",
 };

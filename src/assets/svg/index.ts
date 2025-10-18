@@ -12,6 +12,8 @@ import CopyIcon from "./copy.svg";
 import SearchNormalIcon from "./search-normal.svg";
 import ScanBarcodeIcon from "./scan-barcode.svg";
 import WalletCheckIcon from "./wallet-check.svg";
+import ArrowDownIcon from "./arrow-down.svg";
+import EditIcon from "./edit-2.svg";
 
 export const AppIcons = {
   TickCircle: TicketCircleIcon,
@@ -28,4 +30,6 @@ export const AppIcons = {
   SearchNormal: SearchNormalIcon,
   ScanBarcode: ScanBarcodeIcon,
   WalletCheck: WalletCheckIcon,
+  ArrowDown: ArrowDownIcon,
+  Edit: EditIcon,
 };
