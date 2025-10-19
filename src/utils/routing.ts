@@ -16,6 +16,10 @@ export type AppRoutes = {
   receive: AppRoute;
   selectToken: AppRoute<{ action: SelectTokenActionType }>;
   send: AppRoute<{ token: string }>;
+  savingsHome: AppRoute;
+  autoflowHome: AppRoute;
+  newAutoflow: AppRoute;
+  createAutoFlowRule: AppRoute<{ mode: string }>;
 };
 
 export const routes: AppRoutes = {
@@ -45,6 +49,18 @@ export const routes: AppRoutes = {
   },
   send: {
     fn: ({ token }) => `/send/${token}`,
+  },
+  savingsHome: {
+    fn: () => "/save",
+  },
+  autoflowHome: {
+    fn: () => "/autoflow",
+  },
+  newAutoflow: {
+    fn: () => "/autoflow/new",
+  },
+  createAutoFlowRule: {
+    fn: (data) => `/autoflow/new/${data.mode}`,
   },
 };
 

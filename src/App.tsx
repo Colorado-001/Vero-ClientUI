@@ -15,6 +15,12 @@ import { SwapPage } from "./features/swap";
 import { ReceivePage } from "./features/receive";
 import { SelectTokenPage } from "./components/pages";
 import { SendPage } from "./features/send";
+import { GoalsPage } from "./features/save";
+import {
+  AutoflowHome,
+  CreateRulePage,
+  SelectRuleModePage,
+} from "./features/autoflow";
 
 function App() {
   return (
@@ -34,6 +40,16 @@ function App() {
               <Route path="/dashboard" element={<Home />} />
               <Route path="/swap" element={<SwapPage />} />
               <Route path="/receive" element={<ReceivePage />} />
+
+              <Route path="/save">
+                <Route index element={<GoalsPage />} />
+              </Route>
+
+              <Route path="/autoflow">
+                <Route index element={<AutoflowHome />} />
+                <Route path="new" element={<SelectRuleModePage />} />
+                <Route path="new/:mode" element={<CreateRulePage />} />
+              </Route>
             </Route>
 
             <Route element={<PublicLayout />}>

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { usePortfolio } from "../../hooks";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Input, MyAssets } from "../ui";
 import type { AssetValueDto } from "../../types/wallet";
 import SvgIcon from "../ui/svg-icon";
@@ -10,7 +10,11 @@ import { appNavigate } from "../../utils/routing";
 export const ACTIONS = ["send", "swap"] as const;
 export type SelectTokenActionType = (typeof ACTIONS)[number];
 
-export const SelectTokenPage = () => {
+interface IProps {
+  onSelect?: (val: AssetValueDto) => void;
+}
+
+export const SelectTokenPage: React.FC<IProps> = ({ onSelect: onClick }) => {
   const [filter, setFilter] = useState("");
 
   const navigate = useNavigate();
@@ -26,6 +30,11 @@ export const SelectTokenPage = () => {
 
   const onSelect = useCallback(
     (asset: AssetValueDto) => {
+      if (onClick) {
+        onClick(asset);
+        return;
+      }
+
       if (!action) return;
 
       switch (action as SelectTokenActionType) {

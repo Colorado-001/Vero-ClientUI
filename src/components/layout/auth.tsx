@@ -11,7 +11,7 @@ import {
   withEnsureOnboard,
 } from "../../hoc";
 import { MainLayout } from "./main";
-import { IconButton } from "../ui";
+import { FloatingBottomBar, IconButton } from "../ui";
 import { useMemo } from "react";
 import { appNavigate } from "../../utils/routing";
 import { AnimatePresence } from "motion/react";
@@ -22,6 +22,7 @@ const Header = () => {
 
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
+  const { mode } = useParams();
 
   const left = useMemo(() => {
     if (pathname === "/dashboard")
@@ -32,6 +33,10 @@ const Header = () => {
           onClick={() => appNavigate(navigate, "profile")}
         />
       );
+
+    if (pathname === "/autoflow") {
+      return null;
+    }
 
     return (
       <IconButton
@@ -73,32 +78,48 @@ const Header = () => {
       }
     }
 
+    if (pathname === "/autoflow") {
+      return "Autoflow";
+    }
+
+    if (pathname === "/autoflow/new") {
+      return "New Rule";
+    }
+
+    if (pathname.startsWith("/autoflow/new/")) {
+      if (mode === "time-based") {
+        return "Time-Based";
+      }
+    }
+
     return null;
-  }, [pathname, token, searchParams]);
+  }, [pathname, searchParams, token, mode]);
 
   const showNotificationIcon = ["/dashboard", "/swap"].some((path) =>
     pathname.startsWith(path)
   );
 
   return (
-    <div className="absolute top-0 left-0 w-full p-8 bg-transparent flex flex-row items-center justify-between">
+    <div className="absolute top-0 left-0 w-full py-8 px-6 bg-transparent flex flex-row items-center justify-between">
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={left.key}
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 10 }}
-          transition={{ duration: 0.25 }}
-        >
-          {left}
-        </motion.div>
+        {left && (
+          <motion.div
+            key={left.key}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.25 }}
+          >
+            {left}
+          </motion.div>
+        )}
       </AnimatePresence>
 
       <AnimatePresence mode="wait">
         {title && (
           <motion.p
             key={title}
-            className="text-center text-[20px] text-[#F9FAFB] leading-[28px]"
+            className="text-center flex-1 text-[20px] text-[#F9FAFB] leading-[28px]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -112,16 +133,16 @@ const Header = () => {
       <AnimatePresence mode="wait">
         {showNotificationIcon ? (
           <IconButton key={"notification"} iconName="Notification" />
-        ) : (
+        ) : left ? (
           <div key="none" className="w-[50px]" />
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   );
 };
 
 const Layout = () => {
-  return <MainLayout top={<Header />} />;
+  return <MainLayout top={<Header />} bottom={<FloatingBottomBar />} />;
 };
 
 export const AuthenticatedLayout = withEnsureAccountSetup(

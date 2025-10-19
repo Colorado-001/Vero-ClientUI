@@ -14,6 +14,12 @@ import ScanBarcodeIcon from "./scan-barcode.svg";
 import WalletCheckIcon from "./wallet-check.svg";
 import ArrowDownIcon from "./arrow-down.svg";
 import EditIcon from "./edit-2.svg";
+import HomeTrendUpIcon from "./home-trend-up.svg";
+import LightningIcon from "./mynaui_lightning.svg";
+import PeopleIcon from "./people.svg";
+import TargetIcon from "./streamline_target.svg";
+import GlobeIcon from "./global.svg";
+import ClockIcon from "./clock.svg";
 
 export const AppIcons = {
   TickCircle: TicketCircleIcon,
@@ -32,4 +38,10 @@ export const AppIcons = {
   WalletCheck: WalletCheckIcon,
   ArrowDown: ArrowDownIcon,
   Edit: EditIcon,
+  HomeTrendUp: HomeTrendUpIcon,
+  Lightning: LightningIcon,
+  People: PeopleIcon,
+  Target: TargetIcon,
+  Globe: GlobeIcon,
+  Clock: ClockIcon,
 };

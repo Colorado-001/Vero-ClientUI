@@ -6,9 +6,14 @@ export const useUtilStore = create<UtilState & UtilActions>()(
   persist(
     (set) => ({
       hasOnboarded: false,
+      scrollContainerId: undefined,
 
       markOnboarded() {
         set({ hasOnboarded: true });
+      },
+
+      setScrollContainerId(id) {
+        set({ scrollContainerId: id });
       },
     }),
     {

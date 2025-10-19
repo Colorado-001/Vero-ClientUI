@@ -31,7 +31,12 @@ export const DashboardActions: React.FC<IProps> = ({ disabled }) => {
         disabled={disabled}
         onClick={() => appNavigate(navigate, "swap")}
       />
-      <IconButton title="Save" iconName="Save" disabled={disabled} />
+      <IconButton
+        title="Save"
+        iconName="Save"
+        disabled={disabled}
+        onClick={() => appNavigate(navigate, "savingsHome")}
+      />
     </div>
   );
 };
