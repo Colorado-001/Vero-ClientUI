@@ -7,6 +7,7 @@ export const useUtilStore = create<UtilState & UtilActions>()(
     (set) => ({
       hasOnboarded: false,
       scrollContainerId: undefined,
+      forceHideFbb: false,
 
       markOnboarded() {
         set({ hasOnboarded: true });
@@ -14,6 +15,10 @@ export const useUtilStore = create<UtilState & UtilActions>()(
 
       setScrollContainerId(id) {
         set({ scrollContainerId: id });
+      },
+
+      setForceHideFbb(val) {
+        set({ forceHideFbb: val });
       },
     }),
     {

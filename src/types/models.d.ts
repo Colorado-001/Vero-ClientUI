@@ -9,3 +9,18 @@ export type UserDto = {
   pinSetup: boolean;
   qr: string | null;
 };
+
+export type AutoflowSavingDto = {
+  id: string;
+  frequency: string;
+  name: string;
+  dayOfMonth: number;
+  amountToSave: number;
+  tokenToSave: string;
+  userId: string;
+  isActive: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  progress: any;
+  nextScheduledDate: Date;
+  createdAt: Date;
+};

@@ -10,4 +10,5 @@ export default {
   getPortfolio: () => "/v1/wallet/portfolio",
   getGas: () => "/v1/transfer/gas",
   sendMoney: () => "/v1/transfer/send",
+  autoflow: () => "/v1/savings/autoflow",
 };

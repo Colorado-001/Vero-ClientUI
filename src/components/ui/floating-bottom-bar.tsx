@@ -19,6 +19,8 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  const { forceHideFbb } = useUtilStore();
+
   const { pathname } = useLocation();
   const { scrollContainerId } = useUtilStore();
   const [isVisible, setIsVisible] = useState(true);
@@ -66,13 +68,15 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
       }
     };
 
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", throttledScroll, {
-        passive: true,
-      });
-    } else {
-      // Fallback to window scrolling
-      window.addEventListener("scroll", throttledScroll, { passive: true });
+    if (!forceHideFbb) {
+      if (scrollContainer) {
+        scrollContainer.addEventListener("scroll", throttledScroll, {
+          passive: true,
+        });
+      } else {
+        // Fallback to window scrolling
+        window.addEventListener("scroll", throttledScroll, { passive: true });
+      }
     }
 
     return () => {
@@ -82,7 +86,7 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
         window.removeEventListener("scroll", throttledScroll);
       }
     };
-  }, [lastScrollTop, scrollContainerId]);
+  }, [lastScrollTop, scrollContainerId, forceHideFbb]);
 
   const active = useMemo(() => {
     if (pathname === "/dashboard") return "home";
@@ -92,7 +96,7 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !forceHideFbb && (
         <motion.div
           className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 ${className}`}
           initial={{ y: 100, opacity: 0 }}
