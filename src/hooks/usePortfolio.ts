@@ -11,5 +11,5 @@ export const usePortfolio = () => {
     })();
   }, [loadPortfolio]);
 
-  return store;
+  return { ...store };
 };

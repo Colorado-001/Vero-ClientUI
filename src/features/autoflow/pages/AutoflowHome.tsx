@@ -14,10 +14,6 @@ export const AutoflowHome = () => {
     loadAutoFlows();
   }, [loadAutoFlows]);
 
-  if (loadingAutoFlows) {
-    return <ShimmerAutoFlowCardList count={6} />;
-  }
-
   return (
     <div className="pt-[90px] px-6">
       <p className="text-[14px] text-[#6B7280] text-start mb-4">
@@ -36,11 +32,21 @@ export const AutoflowHome = () => {
           Automated Transactions
         </p>
 
-        <div className="space-y-6">
-          {autoFlows.map((a) => (
-            <AutoFlowCard {...a} key={a.id} />
-          ))}
-        </div>
+        {loadingAutoFlows ? (
+          <ShimmerAutoFlowCardList count={6} />
+        ) : (
+          <div className="space-y-6">
+            {autoFlows.map((a) => (
+              <AutoFlowCard {...a} key={a.id} />
+            ))}
+          </div>
+        )}
+
+        {!loadingAutoFlows && autoFlows.length === 0 && (
+          <div className="w-full py-10 text-center text-[#6B7280] text-[15px]">
+            No flows found
+          </div>
+        )}
       </div>
     </div>
   );

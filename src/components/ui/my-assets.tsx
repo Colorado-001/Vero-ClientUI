@@ -28,6 +28,8 @@ export const MyAssets: React.FC<IProps> = ({
     );
   }, [assets, filter]);
 
+  console.log(loading);
+
   if (loading) {
     return (
       <div className="space-y-4 animate-pulse">
