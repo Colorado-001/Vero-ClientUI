@@ -1,3 +1,5 @@
+import type { AutoflowFrequency } from "./common";
+
 export type UserDto = {
   id: string;
   email: string;
@@ -12,7 +14,7 @@ export type UserDto = {
 
 export type AutoflowSavingDto = {
   id: string;
-  frequency: string;
+  frequency: AutoflowFrequency;
   name: string;
   dayOfMonth: number;
   amountToSave: number;
@@ -20,7 +22,15 @@ export type AutoflowSavingDto = {
   userId: string;
   isActive: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  progress: any;
+  progress: {
+    totalSaved: number;
+    lastSavedAt: string | null; // ISO string format
+    totalExpected: number;
+    failedExecutions: number;
+    nextScheduledDate: string; // ISO string format
+    consecutiveFailures: number;
+    successfulExecutions: number;
+  };
   nextScheduledDate: Date;
   createdAt: Date;
 };
