@@ -27,6 +27,7 @@ export const CreateRulePage = () => {
   const token = form.watch("tokenToSave");
   const amount = form.watch("amountToSave");
   const day = form.watch("dayOfMonth");
+  const frequency = form.watch("frequency");
   const selectedToken = assets.find((a) => a.symbol === token);
 
   const dropdownRef = useRef<DropdownActions>(null);
@@ -61,12 +62,19 @@ export const CreateRulePage = () => {
             form={form}
             name="frequency"
             placeholder="Every Month"
-            options={[{ label: "Every Month", value: "monthly" }]}
+            options={[
+              { label: "Every Month", value: "monthly" },
+              { label: "Every (n) minutes", value: "every_n_minutes" },
+            ]}
           />
 
           <FormInput
-            label="Day of the Month (1 - 31)"
-            placeholder="19"
+            label={
+              frequency === "every_n_minutes"
+                ? "Minute(s) Interval"
+                : "Day of the Month (1 - 31)"
+            }
+            placeholder="10"
             form={form}
             name={"dayOfMonth"}
           />
