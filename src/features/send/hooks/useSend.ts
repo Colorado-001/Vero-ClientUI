@@ -59,11 +59,13 @@ export const useSend = () => {
   const toAddress = walletAddressForm.watch("address");
   const amount = amountForm.watch("amount");
   const selectedToken = assets.find((a) => a.symbol.toLowerCase() === token);
+  const delegation = amountForm.watch("delegation");
 
   const { loading: loadingGasFee, priceData } = useGasPrice(
     amount?.toString(),
     toAddress,
-    token
+    token,
+    delegation
   );
 
   useEffect(() => {
@@ -147,6 +149,7 @@ export const useSend = () => {
         amount,
         to: toAddress,
         tokenSymbol: selectedToken?.symbol,
+        delegation,
       })
     );
     setSending(false);
@@ -158,7 +161,7 @@ export const useSend = () => {
       window.history.replaceState(null, "", "/");
       navigate("/dashboard", { replace: true });
     }
-  }, [toAddress, amount, selectedToken?.symbol, navigate]);
+  }, [toAddress, amount, selectedToken?.symbol, delegation, navigate]);
 
   return {
     step,

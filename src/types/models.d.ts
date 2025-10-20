@@ -34,3 +34,19 @@ export type AutoflowSavingDto = {
   nextScheduledDate: Date;
   createdAt: Date;
 };
+
+export type DelegationSummaryDto = {
+  id: string;
+  type: string;
+  name: string;
+  amountLimit: number;
+  status: "active" | "inactive" | "pending";
+  createdAt: Date;
+  // Allowance specific
+  walletAddress?: string;
+  frequency?: string;
+  startDate?: Date;
+  // Group wallet specific
+  memberCount?: number;
+  approvalThreshold?: number;
+};

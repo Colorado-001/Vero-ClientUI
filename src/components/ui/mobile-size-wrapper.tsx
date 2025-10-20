@@ -8,7 +8,7 @@ export const MobileSizeWrapper: React.FC<MobileSizeWrapperProps> = ({
   children,
 }) => {
   return (
-    <div className="flex justify-center items-center w-full h-screen bg-[#0F1115] md:bg-gray-100">
+    <div className="flex justify-center items-center w-full h-screen bg-[#0F1115]">
       {/* Outer frame */}
       <div
         className="
@@ -19,7 +19,7 @@ export const MobileSizeWrapper: React.FC<MobileSizeWrapperProps> = ({
         "
       >
         {/* Scrollable area */}
-        <div className="h-full overflow-y-auto no-scrollbar flex flex-col">
+        <div className="h-full overflow-y-auto bg-[#0F1115] no-scrollbar flex flex-col">
           {children}
         </div>
       </div>

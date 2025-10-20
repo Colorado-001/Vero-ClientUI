@@ -12,8 +12,9 @@ export const useDelegationStore = create<DelegationState & DelegationAction>()(
       try {
         set({ creatingDelegation: true });
 
-        const result = await delegationApi.createDelegation(data);
-        console.log(result);
+        await delegationApi.createDelegation(data);
+        const { loadDelegations } = get();
+        loadDelegations(true);
       } finally {
         set({ creatingDelegation: false });
       }
@@ -27,8 +28,8 @@ export const useDelegationStore = create<DelegationState & DelegationAction>()(
 
       try {
         set({ loadingDelegations: true });
-        // const result = await savingApi.getAutoFlows();
-        // set({ autoFlows: result });
+        const result = await delegationApi.getMyDelegations();
+        set({ delegations: result });
       } finally {
         set({ loadingDelegations: false });
       }

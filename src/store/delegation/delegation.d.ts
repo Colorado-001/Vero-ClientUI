@@ -1,7 +1,8 @@
 import type { CreateDelegationSchema } from "../../features/delegation/types";
+import type { DelegationSummaryDto } from "../../types/models";
 
 export type DelegationState = {
-  delegations: unknown[];
+  delegations: DelegationSummaryDto[];
   loadingDelegations: boolean;
   creatingDelegation: boolean;
 };

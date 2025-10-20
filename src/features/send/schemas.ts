@@ -21,5 +21,6 @@ export const enterAmountSchema = z.object({
       const num = Number(val);
       return !isNaN(num) && num > 0;
     }, "Amount must be greater than 0"),
+  delegation: z.string().optional(),
 });
 export type EnterAmountSchema = z.infer<typeof enterAmountSchema>;

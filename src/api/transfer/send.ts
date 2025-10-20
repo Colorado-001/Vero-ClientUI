@@ -5,6 +5,7 @@ interface IRequest {
   to: string;
   amount: string;
   tokenSymbol?: string;
+  delegation?: string;
 }
 
 interface IResponse {

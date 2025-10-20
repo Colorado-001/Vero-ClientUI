@@ -6,6 +6,7 @@ export const useGasPrice = (
   amount: string,
   to: string,
   tokenSymbol?: string,
+  delegation?: string,
   delay = 600 // ms debounce delay
 ) => {
   const [priceData, setPriceData] = useState<{
@@ -20,14 +21,14 @@ export const useGasPrice = (
 
     setLoading(true);
     const { data, isError } = await withErrorHandling(() =>
-      transferApi.getGasPrice({ to, tokenSymbol, amount })
+      transferApi.getGasPrice({ to, tokenSymbol, amount, delegation })
     );
 
     if (!isError && data) {
       setPriceData(data);
     }
     setLoading(false);
-  }, [amount, to, tokenSymbol]);
+  }, [amount, delegation, to, tokenSymbol]);
 
   // Debounce effect
   useEffect(() => {

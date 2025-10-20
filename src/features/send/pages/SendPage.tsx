@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useUtilStore } from "../../../store";
 import { EnterAmount, EnterWalletAddress, Summary } from "../components";
 import { useSend } from "../hooks";
 
@@ -18,8 +20,17 @@ export const SendPage = () => {
     triggerSend,
   } = useSend();
 
+  const { setForceHideFbb } = useUtilStore();
+
+  useEffect(() => {
+    setForceHideFbb(true);
+    return () => {
+      setForceHideFbb(false);
+    };
+  }, [setForceHideFbb]);
+
   return (
-    <div className="pt-[120px] w-full px-6">
+    <div className="pt-[120px] w-full px-6 pb-[80px]">
       {step === "enter-wallet" && (
         <EnterWalletAddress
           onSubmit={submitWalletAddress}
