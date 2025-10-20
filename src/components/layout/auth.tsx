@@ -34,7 +34,7 @@ const Header = () => {
         />
       );
 
-    if (pathname === "/autoflow") {
+    if (pathname === "/autoflow" || pathname === "/delegations") {
       return null;
     }
 
@@ -90,6 +90,14 @@ const Header = () => {
       if (mode === "time-based") {
         return "Time-Based";
       }
+    }
+
+    if (pathname === "/delegations") {
+      return "Delegations";
+    }
+
+    if (pathname === "/delegations/new") {
+      return "Delegation Setup";
     }
 
     return null;

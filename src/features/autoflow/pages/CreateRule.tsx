@@ -43,7 +43,7 @@ export const CreateRulePage = () => {
   };
 
   return (
-    <div className="pt-[120px] space-y-14 px-6" id="createRulePage">
+    <div className="pt-[90px] space-y-14 px-6" id="createRulePage">
       <p className="text-[14px] text-[#6B7280] text-start mb-12">
         Choose the date of the month and the amount to automatically save.
       </p>

@@ -21,6 +21,10 @@ import {
   CreateRulePage,
   SelectRuleModePage,
 } from "./features/autoflow";
+import {
+  CreateDelegationPage,
+  DelegationHomePage,
+} from "./features/delegation";
 
 function App() {
   return (
@@ -49,6 +53,11 @@ function App() {
                 <Route index element={<AutoflowHome />} />
                 <Route path="new" element={<SelectRuleModePage />} />
                 <Route path="new/:mode" element={<CreateRulePage />} />
+              </Route>
+
+              <Route path="/delegations">
+                <Route index element={<DelegationHomePage />} />
+                <Route path="new" element={<CreateDelegationPage />} />
               </Route>
             </Route>
 

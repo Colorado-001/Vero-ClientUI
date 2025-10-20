@@ -22,6 +22,7 @@ interface IProps<T extends object> {
   disabled?: boolean;
   className?: string;
   suffixIcon?: ReactNode;
+  type?: "date" | "text";
 }
 
 export const FormInput = <T extends object>({
@@ -31,6 +32,7 @@ export const FormInput = <T extends object>({
   placeholder,
   className,
   suffixIcon,
+  type = "text",
 }: IProps<T>) => {
   return (
     <FormField
@@ -50,6 +52,7 @@ export const FormInput = <T extends object>({
             placeholder={placeholder}
             suffixIcon={suffixIcon}
             {...field}
+            type={type}
           />
           <FormMessage className="text-red-500" />
         </FormItem>
