@@ -11,4 +11,5 @@ export default {
   getGas: () => "/v1/transfer/gas",
   sendMoney: () => "/v1/transfer/send",
   autoflow: () => "/v1/savings/autoflow",
+  delegations: () => "/v1/savings/delegations",
 };

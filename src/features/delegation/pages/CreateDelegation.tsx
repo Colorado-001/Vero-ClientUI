@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { FormDropDown, FormInput, RoundedButton } from "../../../components";
 import { Form } from "../../../components/ui/form";
+import { useUtilStore } from "../../../store";
 import { useCreateDelegation } from "../hooks";
 
 export const CreateDelegationPage = () => {
-  const { onSubmit, form } = useCreateDelegation();
+  const { onSubmit, form, loading } = useCreateDelegation();
 
   const typeOfDelegation = form.watch("type");
+
+  const { setForceHideFbb } = useUtilStore();
+
+  useEffect(() => {
+    setForceHideFbb(true);
+    return () => {
+      setForceHideFbb(false);
+    };
+  }, [setForceHideFbb]);
 
   return (
     <div className="px-6 pt-[120px]" id="createDelegationPage">
@@ -77,8 +88,8 @@ export const CreateDelegationPage = () => {
               label="Create Delegation"
               className="w-full"
               type="submit"
-              // loading={creating}
-              // disabled={creating || loading}
+              loading={loading}
+              disabled={loading}
             />
           </div>
         </form>

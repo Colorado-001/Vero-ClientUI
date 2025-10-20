@@ -7,8 +7,8 @@ export const createDelegationSchema = z.discriminatedUnion("type", [
     name: z.string(),
     walletAddress: walletAddressSchema,
     frequency: z.enum(["Daily"]),
-    startDate: z.date(),
-    amountLimit: z.number(),
+    startDate: z.coerce.date(),
+    amountLimit: z.coerce.number(),
   }),
   z.object({
     type: z.literal("group_wallet"),
@@ -17,6 +17,6 @@ export const createDelegationSchema = z.discriminatedUnion("type", [
       z.object({ name: z.string(), address: walletAddressSchema })
     ),
     approvalThreshold: z.number(),
-    amountLimit: z.number(),
+    amountLimit: z.coerce.number(),
   }),
 ]);
