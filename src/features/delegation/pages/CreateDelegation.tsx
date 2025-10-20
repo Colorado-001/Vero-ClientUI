@@ -72,7 +72,7 @@ export const CreateDelegationPage = () => {
             placeholder="Enter Amount"
           />
 
-          <div className="mt-14 w-full">
+          <div className="mt-10 w-full">
             <RoundedButton
               label="Create Delegation"
               className="w-full"
