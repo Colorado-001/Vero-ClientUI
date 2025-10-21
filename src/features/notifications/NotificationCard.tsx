@@ -44,7 +44,7 @@ export const NotificationCard: React.FC<NotificationDto> = (props) => {
       <div>
         <p className="text-[16px] text-[#F9FAFB] leading-[28px]">{message}</p>
         <p className="text-[#6B7280] text-[14px]">
-          {new Date(createdAt).toLocaleDateString()}
+          {new Date(createdAt).toLocaleString()}
         </p>
       </div>
     </div>
