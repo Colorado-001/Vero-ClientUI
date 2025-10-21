@@ -37,7 +37,11 @@ export const CreateRulePage = () => {
     const isValidDay = !form.getFieldState("dayOfMonth").invalid;
 
     if (isValidAmount && isValidDay && selectedToken && amount) {
-      return `You'll save ${amount} ${selectedToken.symbol} every day ${day} of each month`;
+      if (frequency === "monthly") {
+        return `You'll save ${amount} ${selectedToken.symbol} every day ${day} of each month`;
+      }
+
+      return `You'll save ${amount} ${selectedToken.symbol} every ${day} minute(s)`;
     }
     return null;
   };
