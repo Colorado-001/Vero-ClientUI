@@ -13,4 +13,5 @@ export default {
   autoflow: () => "/v1/savings/autoflow",
   delegations: () => "/v1/delegations",
   delegationForSend: () => "/v1/delegations/send",
+  notifications: "/v1/notifications",
 };

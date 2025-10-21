@@ -25,6 +25,7 @@ import {
   CreateDelegationPage,
   DelegationHomePage,
 } from "./features/delegation";
+import { NotificationHome } from "./features/notifications";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <Route path="/dashboard" element={<Home />} />
               <Route path="/swap" element={<SwapPage />} />
               <Route path="/receive" element={<ReceivePage />} />
+              <Route path="/notifications" element={<NotificationHome />} />
 
               <Route path="/save">
                 <Route index element={<GoalsPage />} />

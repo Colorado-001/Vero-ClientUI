@@ -1,3 +1,4 @@
+import type { NOTIFICATION_LEVELS } from "../utils/constants";
 import type { AutoflowFrequency } from "./common";
 
 export type UserDto = {
@@ -49,4 +50,14 @@ export type DelegationSummaryDto = {
   // Group wallet specific
   memberCount?: number;
   approvalThreshold?: number;
+};
+
+export type NotificationLevel = (typeof NOTIFICATION_LEVELS)[number];
+
+export type NotificationDto = {
+  id: string;
+  level: NotificationLevel;
+  message: string;
+  userId: string;
+  createdAt: string;
 };

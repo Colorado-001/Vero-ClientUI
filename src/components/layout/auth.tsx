@@ -58,6 +58,10 @@ const Header = () => {
       return "Receive";
     }
 
+    if (pathname.startsWith("/notifications")) {
+      return "Notifications";
+    }
+
     if (pathname.startsWith("/select-token")) {
       return "Select Token";
     }
@@ -103,8 +107,8 @@ const Header = () => {
     return null;
   }, [pathname, searchParams, token, mode]);
 
-  const showNotificationIcon = ["/dashboard", "/swap"].some((path) =>
-    pathname.startsWith(path)
+  const showNotificationIcon = ["/dashboard", "/swap", "/notifications"].some(
+    (path) => pathname.startsWith(path)
   );
 
   return (
@@ -140,7 +144,11 @@ const Header = () => {
 
       <AnimatePresence mode="wait">
         {showNotificationIcon ? (
-          <IconButton key={"notification"} iconName="Notification" />
+          <IconButton
+            key={"notification"}
+            iconName="Notification"
+            onClick={() => appNavigate(navigate, "notifications")}
+          />
         ) : left ? (
           <div key="none" className="w-[50px]" />
         ) : null}

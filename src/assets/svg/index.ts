@@ -23,6 +23,8 @@ import ClockIcon from "./clock.svg";
 import MoreVerticalIcon from "./more-vertical.svg";
 import PauseIcon from "./pause.svg";
 import TrashIcon from "./trash.svg";
+import TickSquareIcon from "./tick-square.svg";
+import DangerIcon from "./danger.svg";
 
 export const AppIcons = {
   TickCircle: TicketCircleIcon,
@@ -50,4 +52,6 @@ export const AppIcons = {
   MoreVertical: MoreVerticalIcon,
   Pause: PauseIcon,
   Trash: TrashIcon,
+  TickSquare: TickSquareIcon,
+  Danger: DangerIcon,
 };

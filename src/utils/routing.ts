@@ -22,6 +22,7 @@ export type AppRoutes = {
   createAutoFlowRule: AppRoute<{ mode: string }>;
   delegationHome: AppRoute;
   newDelegation: AppRoute;
+  notifications: AppRoute;
 };
 
 export const routes: AppRoutes = {
@@ -69,6 +70,9 @@ export const routes: AppRoutes = {
   },
   newDelegation: {
     fn: () => "/delegations/new",
+  },
+  notifications: {
+    fn: () => "/notifications",
   },
 };
 
