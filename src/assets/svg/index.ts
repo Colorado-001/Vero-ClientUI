@@ -21,6 +21,8 @@ import TargetIcon from "./streamline_target.svg";
 import GlobeIcon from "./global.svg";
 import ClockIcon from "./clock.svg";
 import MoreVerticalIcon from "./more-vertical.svg";
+import PauseIcon from "./pause.svg";
+import TrashIcon from "./trash.svg";
 
 export const AppIcons = {
   TickCircle: TicketCircleIcon,
@@ -46,4 +48,6 @@ export const AppIcons = {
   Globe: GlobeIcon,
   Clock: ClockIcon,
   MoreVertical: MoreVerticalIcon,
+  Pause: PauseIcon,
+  Trash: TrashIcon,
 };

@@ -13,7 +13,7 @@ export type UserDto = {
 };
 
 export type AutoflowSavingDto = {
-  id: string;
+  id: number;
   frequency: AutoflowFrequency;
   name: string;
   dayOfMonth: number;

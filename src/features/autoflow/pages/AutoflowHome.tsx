@@ -37,7 +37,7 @@ export const AutoflowHome = () => {
         ) : (
           <div className="space-y-6">
             {autoFlows.map((a) => (
-              <AutoFlowCard {...a} key={a.id} />
+              <AutoFlowCard {...a} key={a.id.toString()} />
             ))}
           </div>
         )}

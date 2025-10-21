@@ -7,6 +7,20 @@ export const useSavingStore = create<SavingState & SavingAction>()(
     autoFlows: [],
     loadingAutoFlows: false,
     creatingAutoFlow: false,
+    deletingAutoFlow: false,
+
+    async removeAutoFlow(id) {
+      try {
+        set({ deletingAutoFlow: true });
+
+        await savingApi.deleteAutoFlow(id);
+        const { autoFlows } = get();
+
+        set({ autoFlows: autoFlows.filter((af) => af.id !== id) });
+      } finally {
+        set({ deletingAutoFlow: false });
+      }
+    },
 
     async addAutoFlow(data) {
       try {

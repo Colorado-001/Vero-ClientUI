@@ -2,8 +2,13 @@ import type React from "react";
 import type { AutoflowSavingDto } from "../../../types/models";
 import SvgIcon from "../../../components/ui/svg-icon";
 import { AppIcons } from "../../../assets/svg";
+import { Interaction, Popover } from "../../../components";
+import { useRef, useState } from "react";
+import { FlowPopUpMenu } from "./FlowPopUpMenu";
 
 export const AutoFlowCard: React.FC<AutoflowSavingDto> = (props) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { name, frequency, dayOfMonth, amountToSave, tokenToSave, progress } =
     props;
 
@@ -41,24 +46,44 @@ export const AutoFlowCard: React.FC<AutoflowSavingDto> = (props) => {
     }
   };
 
-  return (
-    <div className="bg-[#1A1C22] w-full rounded-[20px] py-[16px] px-[12px] gap-[16px] flex flex-row items-center">
-      <div className="flex-1 space-y-[4px] text-[#6B7280] text-[14px]">
-        <p className="text-[#F9FAFB] text-[16px]">{name}</p>
+  const toggleMenu = (val: boolean) => () => {
+    setIsMenuOpen(val);
+  };
 
-        <p>Trigger: Time-Based ({getFrequencyText()})</p>
-        <p>
-          Action: Send {amountToSave} {tokenToSave}
-        </p>
-        <p>Next Run: {new Date(progress.nextScheduledDate).toLocaleString()}</p>
+  const moreRef = useRef<HTMLButtonElement>(null);
+
+  return (
+    <>
+      <div className="bg-[#1A1C22] w-full rounded-[20px] py-[16px] px-[12px] gap-[16px] flex flex-row items-center">
+        <div className="flex-1 space-y-[4px] text-[#6B7280] text-[14px]">
+          <p className="text-[#F9FAFB] text-[16px]">{name}</p>
+
+          <p>Trigger: Time-Based ({getFrequencyText()})</p>
+          <p>
+            Action: Send {amountToSave} {tokenToSave}
+          </p>
+          <p>
+            Next Run: {new Date(progress.nextScheduledDate).toLocaleString()}
+          </p>
+        </div>
+
+        <Interaction ref={moreRef} onClick={toggleMenu(true)}>
+          <SvgIcon
+            icon={AppIcons["MoreVertical"]}
+            className="text-[#F9FAFB]"
+            size={26}
+          />
+        </Interaction>
       </div>
 
-      <SvgIcon
-        icon={AppIcons["MoreVertical"]}
-        className="text-[#F9FAFB]"
-        size={26}
-      />
-    </div>
+      <Popover
+        isOpen={isMenuOpen}
+        onClose={toggleMenu(false)}
+        anchorEl={moreRef.current}
+      >
+        <FlowPopUpMenu {...props} onClose={toggleMenu(false)} />
+      </Popover>
+    </>
   );
 };
 

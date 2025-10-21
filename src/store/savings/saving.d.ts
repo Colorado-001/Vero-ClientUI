@@ -5,9 +5,11 @@ export type SavingState = {
   autoFlows: AutoflowSavingDto[];
   loadingAutoFlows: boolean;
   creatingAutoFlow: boolean;
+  deletingAutoFlow: boolean;
 };
 
 export type SavingAction = {
   loadAutoFlows: (refresh: boolean = false) => Promise<void>;
   addAutoFlow: (saving: ICreateAutoFlowRequest) => Promise<void>;
+  removeAutoFlow: (id: number) => Promise<void>;
 };
