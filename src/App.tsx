@@ -26,6 +26,7 @@ import {
   DelegationHomePage,
 } from "./features/delegation";
 import { NotificationHome } from "./features/notifications";
+import { ExplorerHome } from "./features/explorer";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               <Route path="/send/:token" element={<SendPage />} />
 
               <Route path="/dashboard" element={<Home />} />
+              <Route path="/explorer" element={<ExplorerHome />} />
               <Route path="/swap" element={<SwapPage />} />
               <Route path="/receive" element={<ReceivePage />} />
               <Route path="/notifications" element={<NotificationHome />} />

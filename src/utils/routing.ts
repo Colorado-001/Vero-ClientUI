@@ -23,6 +23,7 @@ export type AppRoutes = {
   delegationHome: AppRoute;
   newDelegation: AppRoute;
   notifications: AppRoute;
+  explorer: AppRoute;
 };
 
 export const routes: AppRoutes = {
@@ -73,6 +74,9 @@ export const routes: AppRoutes = {
   },
   notifications: {
     fn: () => "/notifications",
+  },
+  explorer: {
+    fn: () => "/explorer",
   },
 };
 

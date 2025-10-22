@@ -66,3 +66,27 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1d24;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6C4EFF;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5b3fe0;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6C4EFF #1a1d24;
+}

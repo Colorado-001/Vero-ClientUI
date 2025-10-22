@@ -61,3 +61,15 @@ export type NotificationDto = {
   userId: string;
   createdAt: string;
 };
+
+export interface UserSavingsDepositData {
+  user: string;
+  amount: string;
+  newBalance: string;
+  timestamp: string;
+}
+
+export interface VisualizationProps {
+  data: UserSavingsDepositData[];
+  currentUser: string;
+}

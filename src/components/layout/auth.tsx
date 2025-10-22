@@ -30,7 +30,8 @@ const Header = () => {
         <IconButton
           key={"profile"}
           iconName="Profile"
-          onClick={() => appNavigate(navigate, "profile")}
+          disabled
+          // onClick={() => appNavigate(navigate, "profile")}
         />
       );
 
@@ -60,6 +61,10 @@ const Header = () => {
 
     if (pathname.startsWith("/notifications")) {
       return "Notifications";
+    }
+
+    if (pathname.startsWith("/explorer")) {
+      return "Explorer";
     }
 
     if (pathname.startsWith("/select-token")) {

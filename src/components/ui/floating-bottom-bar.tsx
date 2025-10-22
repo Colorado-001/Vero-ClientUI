@@ -94,6 +94,10 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
     if (pathname.startsWith("/autoflow")) return "autoflow";
 
     if (pathname.startsWith("/delegations")) return "delegations";
+
+    if (pathname.startsWith("/explorer")) {
+      return "explorer";
+    }
   }, [pathname]);
 
   return (
@@ -131,8 +135,13 @@ export const FloatingBottomBar: React.FC<FloatingBottomBarProps> = ({
                   label="Delegation"
                   onClick={() => appNavigate(navigate, "delegationHome")}
                 />
-                <Action iconName="Target" isActive={false} label="Goals" />
-                <Action iconName="Globe" isActive={false} label="Explorer" />
+                {/* <Action iconName="Target" isActive={false} label="Goals" /> */}
+                <Action
+                  iconName="Globe"
+                  isActive={active === "explorer"}
+                  label="Explorer"
+                  onClick={() => appNavigate(navigate, "explorer")}
+                />
               </>
             )}
           </div>
