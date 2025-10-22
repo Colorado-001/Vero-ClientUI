@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useUtilStore } from "../../../store";
 import { EnterAmount, EnterWalletAddress, Summary } from "../components";
 import { useSend } from "../hooks";
+import { EnterPin } from "../../../components";
 
 export const SendPage = () => {
   const {
@@ -15,6 +16,7 @@ export const SendPage = () => {
     priceData,
     loadingGasFee,
     sending,
+    pinMessage,
     submitWalletAddress,
     submitAmount,
     triggerSend,
@@ -28,6 +30,16 @@ export const SendPage = () => {
       setForceHideFbb(false);
     };
   }, [setForceHideFbb]);
+
+  if (pinMessage) {
+    return (
+      <EnterPin
+        onComplete={triggerSend}
+        loading={sending}
+        message={pinMessage}
+      />
+    );
+  }
 
   return (
     <div className="pt-[120px] w-full px-6 pb-[80px]">
@@ -56,7 +68,7 @@ export const SendPage = () => {
           network="Monad"
           networkFee={priceData}
           toAddress={toAddress}
-          triggerSend={triggerSend}
+          triggerSend={() => triggerSend()}
           loading={sending}
         />
       )}

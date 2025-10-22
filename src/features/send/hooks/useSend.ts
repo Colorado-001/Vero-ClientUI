@@ -15,12 +15,15 @@ import { useGasPrice } from "./useGasPrice";
 import { withErrorHandling } from "../../../utils/error";
 import * as transferApi from "../../../api/transfer";
 import { toast } from "sonner";
+import type { ErrorHandlerOptions } from "../../../types/error";
 
 export const useSend = () => {
   const navigate = useNavigate();
   const { token } = useParams<{ token?: string }>();
   const { assets } = usePortfolio();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [pinMessage, setPinMessage] = useState("");
 
   const initialValues = {
     step: (() => {
@@ -108,22 +111,6 @@ export const useSend = () => {
     [setSearchParams, step]
   );
 
-  // const prevStep = useCallback(() => {
-  //   const currentIndex = SEND_STEPS.indexOf(step);
-  //   if (currentIndex > 0) {
-  //     const newStep = SEND_STEPS[currentIndex - 1];
-  //     setStep(newStep);
-  //     setSearchParams(
-  //       (prev) => {
-  //         const params = new URLSearchParams(prev);
-  //         params.set("step", newStep);
-  //         return params;
-  //       },
-  //       { replace: false }
-  //     );
-  //   }
-  // }, [step, setSearchParams]);
-
   const submitWalletAddress = useCallback(
     (data: SelectWalletAddressSchema) => {
       nextStep({ to: data.address });
@@ -138,30 +125,48 @@ export const useSend = () => {
     [nextStep]
   );
 
-  const triggerSend = useCallback(async () => {
-    if (!toAddress || !amount) {
-      return;
-    }
+  const triggerSend = useCallback(
+    async (pin?: string) => {
+      if (!toAddress || !amount) {
+        return;
+      }
 
-    setSending(true);
-    const { isError } = await withErrorHandling(() =>
-      transferApi.send({
-        amount,
-        to: toAddress,
-        tokenSymbol: selectedToken?.symbol,
-        delegation,
-      })
-    );
-    setSending(false);
+      const config: ErrorHandlerOptions = {
+        onError: [
+          {
+            code: "HIGH_RISK_OPERATION",
+            func(err) {
+              setPinMessage(err.message);
+            },
+          },
+        ],
+      };
 
-    if (!isError) {
-      toast.success("Transfer initiated successfully");
+      setSending(true);
+      const { isError } = await withErrorHandling(
+        () =>
+          transferApi.send({
+            amount,
+            to: toAddress,
+            tokenSymbol: selectedToken?.symbol,
+            delegation,
+            pin,
+          }),
+        config
+      );
+      setPinMessage("");
+      setSending(false);
 
-      // TODO: clear nav history and go to /
-      window.history.replaceState(null, "", "/");
-      navigate("/dashboard", { replace: true });
-    }
-  }, [toAddress, amount, selectedToken?.symbol, delegation, navigate]);
+      if (!isError) {
+        toast.success("Transfer initiated successfully");
+
+        // TODO: clear nav history and go to /
+        window.history.replaceState(null, "", "/");
+        navigate("/dashboard", { replace: true });
+      }
+    },
+    [toAddress, amount, selectedToken?.symbol, delegation, navigate]
+  );
 
   return {
     step,
@@ -174,6 +179,7 @@ export const useSend = () => {
     priceData,
     selectedToken,
     sending,
+    pinMessage,
     submitWalletAddress,
     submitAmount,
     triggerSend,

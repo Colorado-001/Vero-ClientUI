@@ -6,6 +6,7 @@ interface IRequest {
   amount: string;
   tokenSymbol?: string;
   delegation?: string;
+  pin?: string;
 }
 
 interface IResponse {

@@ -57,11 +57,11 @@ export const CoinAmountCard: React.FC<IProps> = ({
     if (isNaN(numValue)) return;
 
     // Enforce max amount if provided
-    if (maxAmount !== undefined && numValue > maxAmount) {
-      onChange(maxAmount.toString());
-    } else {
-      onChange(val);
-    }
+    // if (maxAmount !== undefined && numValue > maxAmount) {
+    //   onChange(maxAmount.toString());
+    // } else {
+    onChange(val);
+    // }
   };
 
   return (
@@ -138,7 +138,7 @@ export const CoinAmountCard: React.FC<IProps> = ({
               value={value}
               onChange={(e) => handleChange(e.target.value)}
               min="0"
-              max={availableBalance}
+              // max={availableBalance}
               step="0.000001"
             />
           </div>

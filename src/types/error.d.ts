@@ -9,7 +9,8 @@ export type ErrorCodes =
   | "VALUE"
   | "AXIOS_ERROR"
   | "JS_ERROR"
-  | "UNKNOWN_ERROR";
+  | "UNKNOWN_ERROR"
+  | "HIGH_RISK_OPERATION";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type ErrorDataMap = {};

@@ -16,3 +16,4 @@ export * from "./floating-bottom-bar";
 export * from "./dropdown";
 export * from "./popover";
 export * from "./interaction";
+export * from "./enter-pin";
