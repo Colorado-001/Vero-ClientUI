@@ -154,7 +154,10 @@ export const useSend = () => {
           }),
         config
       );
-      setPinMessage("");
+      if (pin && !isError) {
+        setPinMessage("");
+      }
+
       setSending(false);
 
       if (!isError) {
@@ -165,7 +168,14 @@ export const useSend = () => {
         navigate("/dashboard", { replace: true });
       }
     },
-    [toAddress, amount, selectedToken?.symbol, delegation, navigate]
+    [
+      toAddress,
+      amount,
+      selectedToken?.symbol,
+      delegation,
+      navigate,
+      setPinMessage,
+    ]
   );
 
   return {

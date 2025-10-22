@@ -31,6 +31,8 @@ export const SendPage = () => {
     };
   }, [setForceHideFbb]);
 
+  console.log(pinMessage);
+
   if (pinMessage) {
     return (
       <EnterPin

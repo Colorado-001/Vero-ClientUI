@@ -12,10 +12,10 @@ function parseError(err: unknown): AppErrorResponse {
   if (axios.isAxiosError(err)) {
     const axiosErr = err as AxiosError<any>;
 
-    if (axiosErr.response?.data?.message && axiosErr.response?.data?.code) {
+    if (axiosErr.response?.data?.message && axiosErr.response?.data?.error) {
       return {
         message: axiosErr.response.data.message,
-        code: axiosErr.response.data.code,
+        code: axiosErr.response.data.error,
         data: axiosErr.response.data.data,
       };
     }

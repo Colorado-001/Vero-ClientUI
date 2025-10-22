@@ -17,3 +17,4 @@ export * from "./dropdown";
 export * from "./popover";
 export * from "./interaction";
 export * from "./enter-pin";
+export * from "./vero-text";

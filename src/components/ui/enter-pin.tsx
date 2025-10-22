@@ -3,6 +3,7 @@ import type React from "react";
 import { RoundedButton } from "./rounded-button";
 import { PinInputWithKeypad } from "./pin-with-keypad";
 import { useState } from "react";
+import { VeroFlaggedText } from "./vero-text";
 
 interface IProps {
   onComplete: (pin: string) => void;
@@ -19,7 +20,7 @@ export const EnterPin: React.FC<IProps> = ({
 
   return (
     <motion.div
-      className="z-10 flex flex-col items-center flex-1 text-white px-6 py-6 pt-16"
+      className="z-10 flex flex-col items-center flex-1 text-white px-6 py-6 pt-32"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -38,9 +39,10 @@ export const EnterPin: React.FC<IProps> = ({
           Verify Pin
         </h1>
 
-        <p className="text-base text-center text-[#F9FAFB] leading-relaxed max-w-sm">
-          {message || "Please enter your transaction pin to proceed"}
-        </p>
+        <VeroFlaggedText
+          className="text-base text-center text-[#F9FAFB] leading-relaxed max-w-sm"
+          text={message || "Please enter your transaction pin to proceed"}
+        />
       </motion.div>
 
       {/* Pin Input */}
